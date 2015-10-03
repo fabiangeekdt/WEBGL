@@ -1,0 +1,152 @@
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<title>Monkey - Wired</title>
+		<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<meta name="Title" content="GeekDT">
+		<meta name="Author" content="www.geekdt.com">
+		<meta name="Subject" content="Especialistas en repujado de plata y bronce">
+		<meta name="description" content="Official portfolio of products and services" />
+		<meta name="keywords" content="GeekDT, digital entertainment, games, trainning"/>
+		<meta name="Language" content="Spanish">
+		<meta name="Revisit" content="1 day">
+		<meta name="Distribution" content="Global">
+		<meta name="Robots" content="All">
+
+		<!-- Stylesheets -->
+		<link rel="icon" href="img/favicon.png"/>
+		<style>
+			body {
+				font-family: Monospace;
+				background-color: #000000;
+				margin: 0px;
+				overflow: hidden;
+			}
+
+			#info {
+				color: #fff;
+				position: absolute;
+				top: 10px;
+				width: 100%;
+				text-align: center;
+				z-index: 100;
+				display: block;
+			}
+		</style>
+	</head>
+	<body style="margin: 0;">
+		<div >
+			<div style="top: 0px;">
+				<div  style="width: 200px; height: 40px; cursor: pointer;">
+
+					<div>
+						<a href="http://www.geekdt.com" target="_blank"> <img src="img/logo.png" width="30" height="30" alt="GeekDT Universe" title="GeekDT Universe"> </a>
+
+						<span style="font-size: 20px; color: rgb(255, 255, 255); font-family: Conv_URWAlternateGotNo1D; letter-spacing: px;">&nbsp;GEEKDT</span>
+					</div>
+
+				</div>
+			</div>
+			<div  style="right: 0; position: fixed; bottom: 0;">
+				<div style="top: 0px;">
+
+					<span style="font-size: 20px; color: rgb(255, 255, 255); font-family: Conv_URWAlternateGotNo1D; letter-spacing: px;">&nbsp;info@geekdt.com</span>
+
+				</div>
+			</div>
+		</div>
+		<script src="js/three.min.js"></script>
+		<script src="js/OrbitControls.js"></script>
+		<script src="js/ColladaLoader.js"></script>
+		<script src="js/Detector.js"></script>
+		<script>
+			if (!Detector.webgl)
+				Detector.addGetWebGLMessage();
+			var scene, camera, renderer;
+
+			init();
+			animate();
+
+			function init() {
+
+				scene = new THREE.Scene();
+				var WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+
+				renderer = new THREE.WebGLRenderer({
+					antialias : true
+				});
+				renderer.setSize(WIDTH, HEIGHT);
+				document.body.appendChild(renderer.domElement);
+
+				camera = new THREE.PerspectiveCamera(45, WIDTH / HEIGHT, 0.1, 10000);
+				camera.position.set(50, 150, 100);
+				scene.add(camera);
+
+				window.addEventListener('resize', function() {
+					var WIDTH = window.innerWidth, HEIGHT = window.innerHeight;
+					renderer.setSize(WIDTH, HEIGHT);
+					camera.aspect = WIDTH / HEIGHT;
+					camera.updateProjectionMatrix();
+				});
+
+				var light = new THREE.PointLight(0xfffff3, 0.8);
+				light.position.set(-100, 200, 100);
+				scene.add(light);
+
+				var sphereSize = 1;
+				var pointLightHelper = new THREE.PointLightHelper(light, sphereSize);
+				scene.add(pointLightHelper);
+
+				var light2 = new THREE.PointLight(0xd7f0ff, 0.2);
+				light2.position.set(200, 200, 100);
+				scene.add(light2);
+
+				var sphereSize = 1;
+				var pointLightHelper2 = new THREE.PointLightHelper(light2, sphereSize);
+				scene.add(pointLightHelper2);
+
+				var light3 = new THREE.PointLight(0xFFFFFF, 0.5);
+				light3.position.set(150, 200, -100);
+				scene.add(light3);
+
+				var sphereSize = 1;
+				var pointLightHelper3 = new THREE.PointLightHelper(light3, sphereSize);
+				scene.add(pointLightHelper3);
+
+				var loader = new THREE.ColladaLoader();
+
+				loader.options.convertUpAxis = true;
+
+				loader.load('models/json/wireframetestV3.dae', function(collada) {
+					//dummy1.dae
+
+					var dae = collada.scene;
+
+					var skin = collada.skins[0];
+
+					dae.position.set(0, 0, 0);
+					//x,z,y- if you think in blender dimensions ;)
+					dae.scale.set(25, 25, 25);
+
+					scene.add(dae);
+
+				});
+
+				controls = new THREE.OrbitControls(camera, renderer.domElement);
+
+			}
+
+			function animate() {
+
+				requestAnimationFrame(animate);
+
+				renderer.render(scene, camera);
+				controls.update();
+
+			}
+		</script>
+	</body>
+</html>

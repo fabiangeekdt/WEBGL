@@ -1,0 +1,154 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN"
+"http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+		<title>GeekDT Universe&reg;</title>
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+        <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1"/>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+               
+        <!-- Stylesheets -->
+		<link rel="stylesheet" type="text/css" href="css/style.css"/>
+        <link rel="icon" href="img/favicon.png"/>
+        
+        <script type="text/javascript" src="js/common.js"></script>
+        <script type="text/javascript" src="js/j3d.js"></script>
+        <script>
+        	var engine, scene, assets, assetT, assetS;
+        	var mx = 0, my = 0;
+        	var model, camera, shader, root;
+    	    var numParticles = 100000;
+    	    var planet1, planet2;
+        	var isUserInteracting = false;
+        	var planet, planet1, planet3;
+        	var pHovered = false;
+        	var offsetY, offsetX;
+        	var moveMargin = 30;
+        	var ray = new J3D.Ray();
+        	
+        	window.onload = function(){
+        		if(!J3D.Capabilities.webgl) return;
+        		engine = new J3D.Engine();
+
+        		J3D.Loader.loadGLSL("shaders/MillionParticles.glsl", function(s) {
+        			onShader(s);
+        			setup();
+        		});
+        	}
+        	
+    	    function onShader(s) {
+		        var camera = new J3D.Transform();
+		        camera.camera = new J3D.Camera();
+		        camera.position.z = 100;
+		        engine.scene.setCamera(camera);
+		
+		        stars = new J3D.Transform();
+		        stars.renderer = s
+		        stars.renderer.drawMode = gl.POINTS;
+		
+		        stars.geometry = new J3D.Geometry();
+		        stars.geometry.addArray("aVertexPosition", J3D.ParticleUtil.insideCube(numParticles, 400), 3);
+		        stars.geometry.addArray("aVertexColor", J3D.ParticleUtil.randomColors(numParticles, 0.5), 4);
+		        
+		        engine.scene.add(stars, camera);
+		    }
+		    
+		    function setup(){
+    	        offsetX = window.innerWidth * 0.5 + moveMargin * 0.5;
+        		offsetY = window.innerHeight * 0.5 + moveMargin * 0.5;
+		    	
+		    	camera = new J3D.Transform();
+		    	camera.camera = new J3D.Camera({far: 200});
+		    	camera.position.z = 5;
+		    	engine.scene.setCamera(camera);
+		    	
+		    	root = new J3D.Transform();
+		    	root.add(camera);
+		    	engine.scene.add(root);
+		    	
+		    	cubemap = new J3D.Cubemap({
+					left: "models/textures/left.png",
+					right: "models/textures/right.png",
+					up: "models/textures/top.png",
+					down: "models/textures/bottom.png",
+					back: "models/textures/back.png",
+					front: "models/textures/front.png"
+		    	});
+		    	
+		    	engine.scene.addSkybox(cubemap);
+		    	
+		    	
+		    	J3D.Loader.loadJSON("models/json/orion.json", function(jsmeshes) {
+		    		J3D.Loader.loadJSON("models/json/orionScene.json", function(jsscene) {
+		    			J3D.Loader.parseJSONScene(jsscene, jsmeshes, engine);
+		    			planet = engine.scene.find("sun");
+		    			planet1 = engine.scene.find("planet");
+		    			planet2 = engine.scene.find("planet2");		
+		    		})
+		    	});
+		    		    	
+		    	//adding the event listener to the script when the user push, release, and move the mouse and mouse click
+		    	document.addEventListener( 'mousedown', onMouseDown, false );
+				document.addEventListener( 'mousemove', onMouseMove, false );
+				document.addEventListener( 'mouseup', onMouseUp, false );
+		    	
+		    	draw();
+		    } 
+		    
+		    //function which move the pointer around de skybox
+	    	function onMouseMove(e) {
+	    		mx = e.clientX;
+	    		my = e.clientY;
+	    		if ( isUserInteracting === true ) {
+					mx = ( e.clientX / window.innerWidth  ) * 2 - 1;
+					my = ( e.clientY / window.innerHeight ) * 2 - 1;
+				}
+			}
+			
+			//fuction which let us know when the user press a mouse click
+			function onMouseDown(e){
+				e.preventDefault();
+
+				isUserInteracting = true;
+			}
+			
+			//fuction which let us know when the user release a mouse click
+			function onMouseUp(e){
+				isUserInteracting = false;
+			}
+			
+			function draw(){
+				requestAnimationFrame(draw);
+				
+				J3D.Performance.clear();
+				
+				stars.renderer.uColor = [53 , 96, 255, 255];
+				
+			
+				/*ray = J3D.Ray.fromMousePosition(mx,my, camera, {
+					x: offsetX,
+					y: offsetY,
+					width: 1024,
+					heigth: 576
+				}, ray);
+				
+				pHovered = J3D.Intersection.rayTest(ray, planet1);*/
+				document.body.style.cursor = (pHovered) ? "pointer" : "default";
+				
+				if ( isUserInteracting === false ) {
+					mx =0; 
+					my =0;
+				}
+
+				camera.rotation.x -= (my * J3D.Time.deltaTime) / 2000;
+				camera.rotation.y -= (mx * J3D.Time.deltaTime) / 2000;
+
+				engine.render();
+			}
+        </script>
+    </head>
+	<body>
+ 
+    </body>
+</html>

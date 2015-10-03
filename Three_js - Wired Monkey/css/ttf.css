@@ -1,0 +1,114 @@
+@font-face {
+	font-family: 'Conv_URWAlternateGotNo1D';
+	src: url('../fonts/URWAlternateGotNo1D.eot');
+	src: local('â˜º'), url('../ttf/URWAlternateGotNo1D.svg') format('svg'), url('../ttf/URWAlternateGotNo1D.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_Proxima Nova Bold';
+	src: url('../ttf/Proxima Nova Bold.eot');
+	src: local('â˜º'), url('../ttf/Proxima Nova Bold.svg') format('svg'), url('../ttf/Proxima Nova Bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_Proxima Nova Light';
+	src: url('../ttf/Proxima Nova Light.eot');
+	src: local('â˜º'), url('../ttf/Proxima Nova Light.svg') format('svg'), url('../ttf/Proxima Nova Light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_Proxima Nova Reg';
+	src: url('../ttf/Proxima Nova Reg.eot');
+	src: local('â˜º'), url('../ttf/Proxima Nova Reg.svg') format('svg'), url('../ttf/Proxima Nova Reg.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Conv_Proxima Nova Sbold';
+	src: url('../ttf/Proxima Nova Sbold.eot');
+	src: local('â˜º'), url('../ttf/Proxima Nova Sbold.svg') format('svg'), url('../ttf/Proxima Nova Sbold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Symantec Sans';
+	src: url('../ttf/symantecsans.eot');
+	src: local('â˜º'), url('../ttf/symantecsans.svg') format('svg'), url('../ttf/symantecsans.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Symantec Sans Light';
+	src: url('../ttf/symantecsans-light.eot');
+	src: local('â˜º'), url('../ttf/symantecsans-light.svg') format('svg'), url('../ttf/symantecsans-light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'Symantec Sans Bold';
+	src: url('../ttf/symantecsans-bold.eot');
+	src: local('â˜º'), url('../ttf/symantecsans-bold.svg') format('svg'), url('../ttf/symantecsans-bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_BauerBodoniStd-Italic';
+	src: url('../ttf/BauerBodoniStd-Italic.eot');
+	src: local('â˜º'), url('../ttf/BauerBodoniStd-Italic.svg') format('svg'), url('../ttf/BauerBodoniStd-Italic.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_symantecsans';
+	src: url('../ttf/symantecsans.eot');
+	src: local('â˜º'), url('../ttf/symantecsans.svg') format('svg'), url('../ttf/symantecsans.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_symantecsans-bold';
+	src: url('../ttf/symantecsans-bold.eot');
+	src: local('â˜º'), url('../ttf/symantecsans-bold.svg') format('svg'), url('../ttf/symantecsans-bold.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_symantecsans-light';
+	src: url('../ttf/symantecsans-light.eot');
+	src: local('â˜º'), url('../ttf/symantecsans-light.svg') format('svg'), url('../ttf/symantecsans-light.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_symantecsans-medium';
+	src: url('../ttf/symantecsans-medium.eot');
+	src: local('â˜º'), url('../ttf/symantecsans-medium.svg') format('svg'), url('../ttf/symantecsans-medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+@font-face {
+	font-family: 'Conv_symantecsans-medium';
+	src: url('../ttf/symantecsans-medium.eot');
+	src: local('â˜º'), url('../ttf/symantecsans-medium.svg') format('svg'), url('../ttf/symantecsans-medium.ttf') format('truetype');
+	font-weight: normal;
+	font-style: normal;
+}
+
+@font-face {
+	font-family: 'specimen_Play';
+	src: url(http://fonts.googleapis.com/css?family=Play&subset=latin,latin-ext);
+	font-weight: normal;
+	font-style: normal;
+}
+
+div.container > div.footer { font-size: 13px !important; }
